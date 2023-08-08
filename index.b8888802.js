@@ -1,2 +1,0 @@
-function e(e){const t=new URLSearchParams({key:"38685077-7183c86b95211b39352b290b2",image_type:"photo",orientation:"horizontal",safesearch:"true"});return fetch(`https://pixabay.com/api/?${t}&q=${e}`).then((e=>{if(!e.ok)throw new Error(e.statusText);return e.json()}))}({form:document.querySelector(".search-form"),gallery:document.querySelector(".gallery")}).form.addEventListener("submit",(function(t){t.preventDefault();e(t.currentTarget.elements.searchQuery.value.trim()).then((e=>{console.log(e.hits)}))}));
-//# sourceMappingURL=index.b8888802.js.map
