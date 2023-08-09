@@ -1,0 +1,16 @@
+/* img {
+    /* width: 300px; */
+/* } */
+.search-form {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
