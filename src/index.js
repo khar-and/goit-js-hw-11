@@ -47,26 +47,30 @@ const paramsForLightbox = {
 //                         observer.unobserve(target);
 //                     };
 //                 })
-//                 .catch((err) => console.log(err))
+//                 .catch(fetchError)
 //         }
 //     });
 // }
 // // OBSERVER
 
-
+console.log('start');
 let page = 1;                           //Поточна сторінка - перша
 const perPage = 40                      // К-сть елементів на сторінці.
 let query = "";
+let changeQuery = "";
 
 elements.form.addEventListener("submit", onClickSend)
 
 function onClickSend(evt) {
+   
     evt.preventDefault();
-     elements.gallery.innerHTML = '';
-    query = evt.currentTarget.elements.searchQuery.value.trim()
+    elements.gallery.innerHTML = '';
+    query = evt.currentTarget.elements.searchQuery.value.trim();
+    page = 1;
                                         // Перевірка чи поле пошуку не пусте
     if (query === "") {
         Notify.failure('Fill the search field', paramsForNotify);
+        elements.loadMore.hidden = true;
         return;
     }
                                         // Робимо запит на бекенд
@@ -79,6 +83,7 @@ function onClickSend(evt) {
 
                 
             } else {
+                console.log(page);
                 const countPages = Math.ceil(data.totalHits / perPage);
                 const markup = createMarkup(data.hits);
                 elements.gallery.insertAdjacentHTML('beforeend', markup);
@@ -107,7 +112,7 @@ elements.loadMore.addEventListener('click', onLoad);
 
 function createMarkup(arr)  {
     return arr.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
-    <a class="gallery__link" href="${largeImageURL}">
+    <a class="gallery__link link" href="${largeImageURL}">
         <div class="photo-card">
             
                 <img src="${webformatURL}" alt="${tags}" width="300px" loading="lazy" />
@@ -132,7 +137,11 @@ function createMarkup(arr)  {
 }   
 
 function onLoad() {
+    changeQuery = query;
+    
     page += 1;
+    console.log(query);
+    console.log(page);
     serviceContent(query, page, perPage)
     .then(data => {
         const markup = createMarkup(data.hits);
