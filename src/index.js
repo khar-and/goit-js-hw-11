@@ -53,7 +53,6 @@ const paramsForLightbox = {
 // }
 // // OBSERVER
 
-console.log('start');
 let page = 1;                           //Поточна сторінка - перша
 const perPage = 40                      // К-сть елементів на сторінці.
 let query = "";
@@ -140,8 +139,6 @@ function onLoad() {
     changeQuery = query;
     
     page += 1;
-    console.log(query);
-    console.log(page);
     serviceContent(query, page, perPage)
     .then(data => {
         const markup = createMarkup(data.hits);
