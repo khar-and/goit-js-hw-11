@@ -89,7 +89,7 @@ function onClickSend(evt) {
                 // OBSERVER
                 // observer.observe(elements.target);
                 // // OBSERVER
-                simpleLightBox = new SimpleLightbox('.gallery a', paramsForLightbox).refresh();
+                const simpleLightBox = new SimpleLightbox('.gallery a', paramsForLightbox).refresh();
                 Notify.info(`Hooray! We found ${data.totalHits} images.`, paramsForNotify);
                 
                                         // Перевіряємо кількість сторінок і якщо вона не одна, то показуємо кнопку LoadMore
