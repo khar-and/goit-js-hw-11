@@ -136,8 +136,6 @@ function createMarkup(arr)  {
 }   
 
 function onLoad() {
-    changeQuery = query;
-    
     page += 1;
     serviceContent(query, page, perPage)
     .then(data => {
@@ -155,6 +153,7 @@ function onLoad() {
 }
 
 function fetchError(err) {
+    console.log(err);
     Notify.failure('Oops! Something went wrong! Try reloading the page or select another cat breed!', paramsForNotify);
 };
     
